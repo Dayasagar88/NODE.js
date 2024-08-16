@@ -1,14 +1,26 @@
-const express = require("express");
-const fs = require("fs");
-const data = JSON.parse(fs.readFileSync("data.json", "utf-8"));
-const users = data.users;
-
+// const express = require("express");
+// const fs = require("fs");
+// const data = JSON.parse(fs.readFileSync("data.json", "utf-8"));
+// const users = data.users;
+const userModel = require("../models/userModel");
+const User = userModel.User;
 
 //POST
-exports.createUsers = (req, res) => {
-  users.push(req.body);
-  res.status(201).json(req.body);
+exports.createUsers = async (req, res) => {
+  try {
+    const user = new User(req.body);
+    await user
+      .save()
+      .then((user) =>
+        res.status(200).json({ message: "Data saved", user: user })
+      );
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ error: "Internal server error", err:err });
+  }
 };
+
+
 //GET
 exports.getAllUsers = (req, res) => {
   res.status(200).json(users);
@@ -25,7 +37,7 @@ exports.replaceUser = (req, res) => {
   users.splice(userIndex, 1, { id: id, ...req.body });
   res.status(202).json({ message: "User updated" });
 };
-//PATCH 
+//PATCH
 exports.updateUser = (req, res) => {
   const id = +req.params.id;
   const userIndex = users.findIndex((u) => u.id === id);

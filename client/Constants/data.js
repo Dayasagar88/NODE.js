@@ -1,5 +1,5 @@
 {
-  "products": [
+  products:  [
     {
       "id": 1,
       "title": "Charger SXT RWD",
@@ -70,8 +70,9 @@
       "discountedTotal": 11.74,
       "thumbnail": "https://cdn.dummyjson.com/products/images/kitchen-accessories/Egg%20Slicer/thumbnail.png"
     }    
-  ],
-  "users": [
+  ]
+
+  users :[
     {
       "id": 1,
       "firstName": "Emily",
