@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 router
-  .post("", prodContainer.createProducts)
+  .post("", prodContainer.createProduct)
   .get("", prodContainer.getAllProducts)
   .get("/:id", prodContainer.getProdById)
   .put("/:id", prodContainer.replaceProduct)

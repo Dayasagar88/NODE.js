@@ -33,11 +33,13 @@ module.exports = {
     }),
   ],
   devServer: {
-    static: path.join(__dirname, 'public'),
+    static: path.join(__dirname, 'client'),
     port: 3000,
     client: {
       logging: 'none',  // This reduces the log output
     },
+    historyApiFallback: true, 
+    hot: false
   },
   stats: 'errors-only',  // Only show errors
 };
